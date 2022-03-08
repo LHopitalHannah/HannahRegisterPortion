@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import NavTabs from './components/NavTabs'
 import PerpPage from './components/PerpPage';
+import AttemptPerpPage from './components/PerpPage/AttemptPerpPage'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Container, Row, Col, Table, Card, Button } from 'react-bootstrap'
 import Register from './components/Registration/Register';
