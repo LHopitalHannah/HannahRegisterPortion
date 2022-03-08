@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import com.revature.p2.models.Deputy;
 import com.revature.p2.models.Offender;
-import com.revature.p2.services.DeputyService;
 import com.revature.p2.services.OffenderService;
 
 @RestController
@@ -42,10 +40,16 @@ public class OffenderController {
 		return offenderService.getAllOffenders();
 	}
 	
-	@PutMapping("/updateOffender")
+	@PutMapping("/put")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void updateOffenderInfo(@RequestBody Offender updateOffenderRequest, HttpServletRequest req) {
 
+		offenderService.updateOffender(updateOffenderRequest);
+	}
+	
+	@PatchMapping("/update")
+	@ResponseStatus(HttpStatus.OK)
+	public void updateOffender(@RequestBody Offender updateOffenderRequest, HttpServletRequest req) {
 		offenderService.updateOffender(updateOffenderRequest);
 	}
 	
