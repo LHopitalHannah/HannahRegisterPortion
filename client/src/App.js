@@ -7,6 +7,7 @@ import PerpPage from './components/PerpPage';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Container, Row, Col, Table, Card, Button } from 'react-bootstrap'
 import Register from './components/Registration/Register';
+import RegisterOffender from './components/Registration/RegisterOffender';
 
 function App() {
   return (
@@ -47,6 +48,10 @@ function App() {
             </header>
 
           </Route>
+          <Route exact path={["/", "/registerOffender"]}>
+            <RegisterOffender />
+          </Route>
+
           <Route exact path={["/", "/perppage"]}>
             <PerpPage />
           </Route>

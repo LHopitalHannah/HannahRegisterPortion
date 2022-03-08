@@ -17,6 +17,9 @@ function NavTabs(
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/perppage">Criminal Database</Nav.Link>
                         {/* <Nav.Link href="/perppage">File a Complaint</Nav.Link> */}
+
+                        <Nav.Link href="/registerOffender">Register Offender</Nav.Link>
+                        
                         <FileComplaint />
                         <Nav.Link href="#footer">About</Nav.Link>
                     </Nav>
