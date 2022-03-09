@@ -26,6 +26,10 @@ public class OffenderService {
 		return (List<Offender>)offenderDAO.findAll();
 	}
 	
+	public Offender getOffenderById(int id){
+		return offenderDAO.findOffenderById(id);
+	}
+	
 	@Transactional
 	public void updateOffender(Offender updateOffenderRequest) {
 		
