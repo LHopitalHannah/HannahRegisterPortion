@@ -2,7 +2,7 @@ import React from "react";
 // import { Link, useLocation } from "react-router-dom";
 import { Navbar, Nav, Container, Button, Form, FormControl, Alert } from 'react-bootstrap';
 // import Login from "./Users/LoginModal";
-
+import axios from 'axios';
 function NavTabs(
 ) {
     const authenticated = false;
@@ -24,6 +24,11 @@ function NavTabs(
                         <Nav.Link href="/login">Login</Nav.Link>
                         <Nav.Link href="/register">Register</Nav.Link>
                     </Nav>
+                    <Button onClick={() => {
+                        axios.get('https://randomuser.me/api/').then(e => {
+                            console.log(e.data)
+                        })
+                    }}>Click</Button>
                 </Container>
             </Navbar>
         </>
