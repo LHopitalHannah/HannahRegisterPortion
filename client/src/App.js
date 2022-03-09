@@ -10,6 +10,7 @@ import { Container, Row, Col, Table, Card, Button } from 'react-bootstrap'
 import Register from './components/Registration/Register';
 import RegisterOffender from './components/Registration/RegisterOffender';
 import Dog from'./components/DogAPI.js'
+import RegisterOffender2 from './components/Registration/RegisterOffender2';
 
 function App() {
   return (
@@ -51,7 +52,7 @@ function App() {
 
           </Route>
           <Route exact path={["/", "/registerOffender"]}>
-            <RegisterOffender />
+            <RegisterOffender2 />
           </Route>
 
           <Route exact path={["/", "/perppage"]}>
