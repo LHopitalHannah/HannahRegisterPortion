@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Container, Row, Col, Table, Image, ProgressBar, Button } from 'react-bootstrap'
 import PerpStats from './PerpStats/PerpStats';
 import PerpOffenses from './PerpOffenses/PerpOffenses';
+import FileComplaint from '../FileComplaint/FileComplaint'
 
 function LeftLayout(props) {
     const [data, setData] = useState([
@@ -82,8 +83,8 @@ Advise: Approach with Caution`);
                                     </tr>
                                 </Table>
 
-                                <PerpOffenses hProps={hProps} data={props.data.offenses}/>
-                                
+                                <PerpOffenses hProps={hProps} data={data}/>
+                                <FileComplaint data={props.data} />
                             </Col>
                         </Row>
                     </Container>

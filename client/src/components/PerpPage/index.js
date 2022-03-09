@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import WantedPoster from './WantedPoster'
-import { Container, Row, Col, Table, Image, Button, ButtonGroup } from 'react-bootstrap'
+import { Container, Row, Col, Table, Image, Button, ButtonGroup, Spinner } from 'react-bootstrap'
 import LeftLayout from './LeftLayout';
 import RightLayout from './RightLayout';
 import './PerpPage.css'
@@ -8,573 +8,290 @@ import WPModal from './WantedPoster/WPModal';
 import SearchBar from './SearchBar/SearchBar';
 
 function PerpPage() {
+    const [isLoading, setIsLoading] = useState(true);
     const [viewMode, setViewMode] = useState("table");
     const [acitveProfileRow, setActiveProfileRow] = useState(0)
     const [searchString, setSearchString] = useState("")
     const [filteredData, setFilteredData] = useState([])
-    const [data, setData] = useState(
-        [{
-            "src": "images (a).png",
-            "fullname": "Guilty",
-            "alias": "Guilty",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "images (b).png",
-            "fullname": "Bad Dog",
-            "alias": "'Bad' the Dog",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "images (c).png",
-            "fullname": "Douglas Dog",
-            "alias": "'Doug' the Dog",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "images (5).png",
-            "fullname": "NIKOLAI ONDREJKO",
-            "alias": "DINGGLE BERRY BANDIT",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "images (3).png",
-            "fullname": "Snoop Puppy Pup",
-            "alias": "Calvin Cordozar Broadus Jr",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "images (4).png",
-            "fullname": "Kim Bassethound",
-            "alias": "DINGGLE BERRY BANDIT",
-            "dob": "FEB 09, 2022",
-            "sex": "F",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "images (10).png",
-            "fullname": "ICE CUB",
-            "alias": "DINGGLE BERRY BANDIT",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "images (11).png",
-            "fullname": "Don Vito Corleone",
-            "alias": "The Godfather",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "download (1).png",
-            "fullname": "Natasha ONDREJKO",
-            "alias": "DINGGLE BERRY BANDIT",
-            "dob": "FEB 09, 2022",
-            "sex": "F",
-            "height": "1' 2\"",
-            "weight": "50",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
+    const [data, setData] = useState([]);
+    async function fetchOffenders() {
+        const response = await fetch("http://localhost:8083/p2/offender/getAllOffender");
+        const fetchedOffenders = await response.json();
+        console.log(fetchedOffenders);
+        setIsLoading(false);
+        setData(fetchedOffenders);
+    }
 
-        {
-            "src": "cat-with-attitude.png",
-            "fullname": "Marty McMeow",
-            "alias": "Michael J Cat",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "attitude-feat.png",
-            "fullname": "NIKOLAI Cagged",
-            "alias": "DINGGLE BERRY BANDIT",
-            "dob": "FEB 09, 2022",
-            "sex": "F",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "cat-4694065_960_720.png",
-            "fullname": "Ted Tabby",
-            "alias": "Ira Tay",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "quy3t9tjvia61.png",
-            "fullname": "Clint Eastcat",
-            "alias": "Sheriff",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "shutterstock_129390089_1.png",
-            "fullname": "Norman Bats",
-            "alias": "Psycho",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "grumpy_cat.png",
-            "fullname": "Tartar Sauce",
-            "alias": "Grumpy Cat",
-            "dob": "FEB 09, 2022",
-            "sex": "F",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "famous-cats1.png",
-            "fullname": "Salvador Doggy",
-            "alias": "Salvador Cat",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "Cat-Cosplaying-as-Dr-Strange.png",
-            "fullname": "Doctor Strange Cat",
-            "alias": "Doctor Cat",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "images (13).png",
-            "fullname": "Captain Jack Sparrow",
-            "alias": "Grumpy Cat",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "images (12).png",
-            "fullname": "Audrey Hepcat",
-            "alias": "Grumpy Cat",
-            "dob": "FEB 09, 2022",
-            "sex": "F",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
+    const seedData = [{
+        "src": "images (a).png",
+        "fullname": "Guilty",
+        "alias": "Guilty",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "images (b).png",
+        "fullname": "Bad Dog",
+        "alias": "'Bad' the Dog",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "images (c).png",
+        "fullname": "Douglas Dog",
+        "alias": "'Doug' the Dog",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "images (5).png",
+        "fullname": "NIKOLAI ONDREJKO",
+        "alias": "DINGGLE BERRY BANDIT",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "images (3).png",
+        "fullname": "Snoop Puppy Pup",
+        "alias": "Calvin Cordozar Broadus Jr",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "images (4).png",
+        "fullname": "Kim Bassethound",
+        "alias": "DINGGLE BERRY BANDIT",
+        "dob": "FEB 09, 2022",
+        "sex": "F",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "images (10).png",
+        "fullname": "ICE CUB",
+        "alias": "DINGGLE BERRY BANDIT",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "images (11).png",
+        "fullname": "Don Vito Corleone",
+        "alias": "The Godfather",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "download (1).png",
+        "fullname": "Natasha ONDREJKO",
+        "alias": "DINGGLE BERRY BANDIT",
+        "dob": "FEB 09, 2022",
+        "sex": "F",
+        "height": "1' 2\"",
+        "weight": "50",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
 
-        {
-            "src": "images (14).png",
-            "fullname": "Obi Wan Catnobi",
-            "alias": "Grumpy Cat",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "cats-lede-1.png",
-            "fullname": "Victoria",
-            "alias": "the White",
-            "dob": "FEB 09, 2022",
-            "sex": "F",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        {
-            "src": "insultdog.png",
-            "fullname": "Triumph",
-            "alias": "the Insult Comic Dog",
-            "dob": "FEB 09, 2022",
-            "sex": "F",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        },
-        ]
-    );
+    {
+        "src": "cat-with-attitude.png",
+        "fullname": "Marty McMeow",
+        "alias": "Michael J Cat",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "attitude-feat.png",
+        "fullname": "NIKOLAI Cagged",
+        "alias": "DINGGLE BERRY BANDIT",
+        "dob": "FEB 09, 2022",
+        "sex": "F",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "cat-4694065_960_720.png",
+        "fullname": "Ted Tabby",
+        "alias": "Ira Tay",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "quy3t9tjvia61.png",
+        "fullname": "Clint Eastcat",
+        "alias": "Sheriff",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "shutterstock_129390089_1.png",
+        "fullname": "Norman Bats",
+        "alias": "Psycho",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "grumpy_cat.png",
+        "fullname": "Tartar Sauce",
+        "alias": "Grumpy Cat",
+        "dob": "FEB 09, 2022",
+        "sex": "F",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "famous-cats1.png",
+        "fullname": "Salvador Doggy",
+        "alias": "Salvador Cat",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "Cat-Cosplaying-as-Dr-Strange.png",
+        "fullname": "Doctor Strange Cat",
+        "alias": "Doctor Cat",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "images (13).png",
+        "fullname": "Captain Jack Sparrow",
+        "alias": "Grumpy Cat",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "images (12).png",
+        "fullname": "Audrey Hepcat",
+        "alias": "Grumpy Cat",
+        "dob": "FEB 09, 2022",
+        "sex": "F",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
 
-    // useEffect(() => {
-    //     setFilteredData(data.filter(e => true))
-    // }, [])
+    {
+        "src": "images (14).png",
+        "fullname": "Obi Wan Catnobi",
+        "alias": "Grumpy Cat",
+        "dob": "FEB 09, 2022",
+        "sex": "M",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "cats-lede-1.png",
+        "fullname": "Victoria",
+        "alias": "the White",
+        "dob": "FEB 09, 2022",
+        "sex": "F",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    {
+        "src": "insultdog.png",
+        "fullname": "Triumph",
+        "alias": "the Insult Comic Dog",
+        "dob": "FEB 09, 2022",
+        "sex": "F",
+        "height": "2' 2\"",
+        "weight": "BRN",
+        "eyes": "BRN",
+        "hair": "BRN"
+    },
+    ]
+
+    const seedDB = async () => {
+        for (let i = 0; i < seedData.length; i++) {
+            const offenderObj = { ...seedData[i], orderBy: 100 + i };
+            console.log(offenderObj)
+            fetch("http://localhost:8083/p2/offender/add", {
+                method: "POST",
+                headers: { "Content-type": "application/json" },
+                body: JSON.stringify(offenderObj)
+            }).then(() => {
+                console.log("offender added")
+            })
+        }
+    }
+    useEffect(() => {
+        // seedDB();
+        fetchOffenders();
+    }, []);
+
+    useEffect(() => {
+        setFilteredData(data.filter(e => {
+            return (e.fullname.toLowerCase().includes(searchString) || e.alias.toLowerCase().includes(searchString))
+        }))
+    }, [data])
+
 
     useEffect(() => {
         setFilteredData(data.filter(e => {
@@ -582,10 +299,14 @@ function PerpPage() {
         }))
     }, [searchString])
 
-    return (
+    return isLoading ? <><Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+    </Spinner></> : (
+
         <>
             <section style={{ textAlign: 'center', backgroundColor: 'black' }}>
                 <ButtonGroup aria-label="Basic example">
+                    <Button onClick={() => seedDB()}>Seed Database</Button>
                     {viewMode === 'profile' || viewMode === 'poster' ? (<><Button onClick={() => setViewMode('table')}>Table View</Button></>) : null}
                     {/* <Button onClick={() => setViewMode('profile')}>Profile View</Button> */}
                     {viewMode === 'profile' ? (<><Button onClick={() => setViewMode('poster')}>Poster View</Button></>) : null}

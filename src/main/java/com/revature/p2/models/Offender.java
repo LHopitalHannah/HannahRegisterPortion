@@ -57,6 +57,10 @@ public class Offender {
 	@Column(name="hair", unique=false, nullable=false)
 	private String hair;
 	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="order_by", unique=false, nullable=false)
+	private int orderBy;
+	
 //	@Column(name="offense", unique=false, nullable=false)
 //	private List<String> offenses;
 	
@@ -64,7 +68,7 @@ public class Offender {
 	public Offender() {}
 
 	public Offender(int id, String src, String fullname, String alias, String dob, String sex, String height,
-			String weight, String eyes, String hair) {
+			String weight, String eyes, String hair, int orderBy) {
 		super();
 		this.id = id;
 		this.src = src;
@@ -76,6 +80,7 @@ public class Offender {
 		this.weight = weight;
 		this.eyes = eyes;
 		this.hair = hair;
+		this.orderBy = orderBy;
 
 	}
 
@@ -159,15 +164,25 @@ public class Offender {
 		this.hair = hair;
 	}
 
+	public int getOrderBy() {
+		return orderBy;
+	}
 
+	public void setOrderBy(int orderBy) {
+		this.orderBy = orderBy;
+	}
 
 	@Override
 	public String toString() {
 		return "Offender [id=" + id + ", src=" + src + ", fullname=" + fullname + ", alias=" + alias + ", dob=" + dob
 				+ ", sex=" + sex + ", height=" + height + ", weight=" + weight + ", eyes=" + eyes + ", hair=" + hair
-				 + "]";
+				+ ", orderBy=" + orderBy + "]";
 	}
-	
+
+
+
+
+
 	
 //	@Column(name="totalVotes")
 //	private int totalVotes;
