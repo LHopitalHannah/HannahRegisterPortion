@@ -31,9 +31,6 @@ function Register() {
         setDeputies(result);
 
       })
-
-
-
   }, [])
 
 
@@ -72,24 +69,13 @@ function Register() {
                 Id: {deputy.id}<br />
                 Username: {deputy.username}<br />
                 Email: {deputy.email}
-
               </Paper>
-
-
             )
-
-
             )}
-
-
-
           </Paper>
-
-
         </Box>
       </Paper>
     </Container>
-
   )
 }
 
