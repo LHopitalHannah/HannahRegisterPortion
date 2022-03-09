@@ -289,6 +289,16 @@ function PerpPage() {
         fetchOffenders();
     }, []);
 
+    async function deleteOffender(id) {
+        const response = await fetch(`http://localhost:8083/p2/offender/delete/id?id=${id}`, {
+          method: "DELETE",
+        });
+        console.log(`Deleting ${id}`);
+        return response.json();
+    }
+
+
+
     useEffect(() => {
         setFilteredData(data.filter(e => {
             return (e.fullname.toLowerCase().includes(searchString) || e.alias.toLowerCase().includes(searchString))
@@ -330,7 +340,7 @@ function PerpPage() {
                 (<Table >
                     <thead>
                         <tr>
-                            {['src', 'fullname', 'alias', 'dob', 'sex', 'hair', 'eyes'].map((c, j) => {
+                            {['src', 'fullname', 'alias', 'dob', 'sex', 'hair', 'eyes', 'Delete'].map((c, j) => {
                                 return (<th key={`th-${j}`}>
                                     {c}
                                 </th>)
@@ -353,7 +363,7 @@ function PerpPage() {
                                         {e[c]}
                                     </td>)
                                 })}
-
+                                <td><Button variant="dark" onClick={() => deleteOffender(e.id)}>Delete</Button></td>
                             </tr>
                         </>
                         )
