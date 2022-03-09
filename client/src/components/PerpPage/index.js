@@ -268,9 +268,9 @@ function PerpPage() {
     },
     ]
 
-    const seedDB = () => {
+    const seedDB = async () => {
         for (let i = 0; i < seedData.length; i++) {
-            const offenderObj = {...seedData[i], orderBy:100 + i};
+            const offenderObj = { ...seedData[i], orderBy: 100 + i };
             console.log(offenderObj)
             fetch("http://localhost:8083/p2/offender/add", {
                 method: "POST",
@@ -300,8 +300,8 @@ function PerpPage() {
     }, [searchString])
 
     return isLoading ? <><Spinner animation="border" role="status">
-    <span className="visually-hidden">Loading...</span>
-  </Spinner></> : (
+        <span className="visually-hidden">Loading...</span>
+    </Spinner></> : (
 
         <>
             <section style={{ textAlign: 'center', backgroundColor: 'black' }}>

@@ -1,38 +1,59 @@
-import React, { useState, useEffect } from 'react'
-import { Button, Modal, Table, Form } from 'react-bootstrap'
+import React, { useState, useEffect, useRef } from 'react'
+import { Button, Modal, Table, Form, FloatingLabel, Image } from 'react-bootstrap'
+import axios from 'axios'
 
 function FileComplaint(props) {
     const [state, setState] = useState({})
+    const [submitData, seSubmitData] = useState({
+        date: "",
+        offenseDescription: ""
+    })
+
+    const handleDateChange = event => {
+        setState({
+            date: event.target.value
+        });
+    }
+
+    const handleDescriptionChange = event => {
+        setState({
+            offenseDescription: event.target.value
+        });
+    }
 
     useEffect(() => {
         console.log(state)
     }, [state])
+    // const [data, setData] = useState(
+    //     {
+    //         "src": "images (a).png",
+    //         "fullname": "Guilty",
+    //         "alias": "Guilty",
+    //         "dob": "FEB 09, 2022",
+    //         "sex": "M",
+    //         "height": "2' 2\"",
+    //         "weight": "BRN",
+    //         "eyes": "BRN",
+    //         "hair": "BRN",
+    //         "offenses": [
+    //             {
+    //                 "date": "2022/02/22",
+    //                 "offense": "Did a lot of bad things",
+    //             },
+    //             {
+    //                 "date": "2022/02/22",
+    //                 "offense": "Did a lot of bad things",
+    //             },
+    //             {
+    //                 "date": "2022/02/22",
+    //                 "offense": "Did a lot of bad things",
+    //             }
+    //         ]
+    //     }
+    // );
+    
     const [data, setData] = useState(
-        {
-            "src": "images (a).png",
-            "fullname": "Guilty",
-            "alias": "Guilty",
-            "dob": "FEB 09, 2022",
-            "sex": "M",
-            "height": "2' 2\"",
-            "weight": "BRN",
-            "eyes": "BRN",
-            "hair": "BRN",
-            "offenses": [
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                },
-                {
-                    "date": "2022/02/22",
-                    "offense": "Did a lot of bad things",
-                }
-            ]
-        }
+        props.data
     );
 
     const [lgShow, setLgShow] = useState(false);
@@ -47,7 +68,6 @@ function FileComplaint(props) {
             reader.onload = _handleReaderLoaded.bind(this)
             reader.readAsBinaryString(file)
         }
-
     }
 
     const _handleReaderLoaded = (readerEvt) => {
@@ -55,10 +75,31 @@ function FileComplaint(props) {
         setState({ base64TextString: btoa(binaryString) })
     }
 
+    const submitOffense = (e) => {
+
+        e.preventDefault();
+        console.log(submitData)
+
+        axios.post(`/offense/add/${props.data.id}`, data, {
+            // receive two    parameter endpoint url ,form data
+        }).then(res => { // then print response status
+            console.log(res.statusText)
+        })
+    }
+
+    const handleSubmit = event => {
+        // if (value) {
+        //   setList(list.concat(value));
+        // }
+
+        // setValue('');
+
+        event.preventDefault();
+    };
+
     return (
         <>
             <Button onClick={() => setLgShow(true)}>File a Complaint</Button>
-
             <Modal
                 size="lg"
                 show={lgShow}
@@ -71,10 +112,12 @@ function FileComplaint(props) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {state !== {} ? <><img style={{ width: 500 }} src={`data:image/jpeg;charset=utf-8;base64, ${state.base64TextString}`} />
+
+                    {/* {state !== {} ? <><img style={{ width: 500 }} src={`data:image/jpeg;charset=utf-8;base64, ${state.base64TextString}`} />
                         <div> {`data:image/jpeg;charset=utf-8;base64, ${state.base64TextString}`} </div>
-                    </> : null}
-                    <Form onChange={(e) => formChange(e)} >
+                    </> : null} */}
+
+                    {/* <Form onChange={(e) => formChange(e)} onSubmit={submitOffense} >
                         <input
                             type="file"
                             name="image"
@@ -83,8 +126,10 @@ function FileComplaint(props) {
                         />
                         <input type="submit" />
 
-                    </Form>
-                    <Table style={{ textAlign: 'left', width: '100%' }}>
+
+                    </Form> */}
+                    <Image src={props.data.src} style={{ height: 300 }} wrapped ui={false} />
+                    <Table style={{ textAlign: 'left', width: '90%' }}>
                         <tr>
                             <td colSpan={4}>
                                 <h3>{data.fullname}</h3>
@@ -144,6 +189,36 @@ function FileComplaint(props) {
                             </td>
                         </tr>
                     </Table>
+                    <Form>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Date</Form.Label>
+                            <Form.Control type="date" placeholder="Date"
+                                name="date"
+                                // ref={dateInput}
+                                // value={submitData.date} 
+                                onChange={handleDescriptionChange}
+                            />
+                            <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                            </Form.Text>
+                        </Form.Group>
+
+                        <FloatingLabel controlId="floatingTextarea2" label="Comments">
+                            <Form.Control
+                                as="textarea"
+                                placeholder="Leave a comment here"
+                                style={{ height: '100px' }}
+                                name="offeseDescription"
+                                // value={submitData.offenseDescription}
+                                onChange={handleDescriptionChange}
+                            // ref={offenseDescriptionInput}
+                            />
+                        </FloatingLabel>
+                        <Button variant="primary" type="submit" >
+                            Submit
+                        </Button>
+                    </Form>
+
                 </Modal.Body>
             </Modal>
         </>

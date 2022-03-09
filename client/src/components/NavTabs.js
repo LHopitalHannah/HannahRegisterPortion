@@ -1,7 +1,6 @@
 import React from "react";
 // import { Link, useLocation } from "react-router-dom";
 import { Navbar, Nav, Container, Button, Form, FormControl, Alert } from 'react-bootstrap';
-import FileComplaint from "./FileComplaint/FileComplaint";
 // import Login from "./Users/LoginModal";
 
 function NavTabs(
@@ -19,8 +18,6 @@ function NavTabs(
                         {/* <Nav.Link href="/perppage">File a Complaint</Nav.Link> */}
 
                         <Nav.Link href="/registerOffender">Register Offender</Nav.Link>
-                        
-                        <FileComplaint />
                         <Nav.Link href="#footer">About</Nav.Link>
                     </Nav>
                     <Nav className="">
