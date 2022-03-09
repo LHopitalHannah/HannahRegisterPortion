@@ -5,25 +5,28 @@ import axios from 'axios'
 function FileComplaint(props) {
     const [state, setState] = useState({})
     const [submitData, seSubmitData] = useState({
-        date: "",
-        offenseDescription: ""
+        offenseDate: "",
+        offenseDescription: "",
+        offender: props.data
     })
 
     const handleDateChange = event => {
-        setState({
-            date: event.target.value
+        seSubmitData({
+            ...submitData,
+            offenseDate: event.target.value
         });
     }
 
     const handleDescriptionChange = event => {
-        setState({
+        seSubmitData({
+            ...submitData,
             offenseDescription: event.target.value
         });
     }
 
     useEffect(() => {
-        console.log(state)
-    }, [state])
+        console.log(submitData)
+    }, [submitData])
     // const [data, setData] = useState(
     //     {
     //         "src": "images (a).png",
@@ -51,7 +54,7 @@ function FileComplaint(props) {
     //         ]
     //     }
     // );
-    
+
     const [data, setData] = useState(
         props.data
     );
@@ -80,11 +83,17 @@ function FileComplaint(props) {
         e.preventDefault();
         console.log(submitData)
 
-        axios.post(`/offense/add/${props.data.id}`, data, {
-            // receive two    parameter endpoint url ,form data
-        }).then(res => { // then print response status
-            console.log(res.statusText)
-        })
+        // axios.post('http://localhost:8083/p2/offense/add', submitData, {
+        //     // receive two    parameter endpoint url ,form data
+        // }).then(res => { // then print response status
+        //     console.log(res.statusText)
+        // })
+
+        axios.post('http://localhost:8083/p2/offense/add', submitData)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
     }
 
     const handleSubmit = event => {
@@ -189,14 +198,14 @@ function FileComplaint(props) {
                             </td>
                         </tr>
                     </Table>
-                    <Form>
+                    <Form  >
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Date</Form.Label>
                             <Form.Control type="date" placeholder="Date"
                                 name="date"
                                 // ref={dateInput}
                                 // value={submitData.date} 
-                                onChange={handleDescriptionChange}
+                                onChange={handleDateChange}
                             />
                             <Form.Text className="text-muted">
                                 We'll never share your email with anyone else.
@@ -214,7 +223,7 @@ function FileComplaint(props) {
                             // ref={offenseDescriptionInput}
                             />
                         </FloatingLabel>
-                        <Button variant="primary" type="submit" >
+                        <Button variant="primary" type="submit"  onClick={submitOffense}>
                             Submit
                         </Button>
                     </Form>
