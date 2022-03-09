@@ -30,17 +30,17 @@ function RegisterOffender() {
     })
   }
 
-  useEffect(() => {
-    fetch("http://localhost:8083/p2/offender/getAllOffenders")
-      .then(res => res.json())
-      .then(result => {
-        setOffenders(result);
+  // useEffect(() => {
+  //   fetch("http://localhost:8083/p2/offender/getAllOffender")
+  //     .then(res => res.json())
+  //     .then(result => {
+  //       setOffenders(result);
 
-      })
+  //     })
 
 
 
-  }, [])
+  // }, [])
 
 
   return (
@@ -55,54 +55,55 @@ function RegisterOffender() {
           noValidate
           autoComplete="off"
         >
-          <TextField id="offender-src" label="offender-src" variant="outlined" fullWidth
+          <TextField id="offender-src" label="Image-src" variant="outlined" fullWidth
             value={src}
             onChange={(e) => setSrc(e.target.value)}
           />
           <br></br>
-          <TextField id="offender-fullname" label="offender-fullname" variant="standard" fullWidth
+          <TextField id="offender-fullname" label="Full Name" variant="standard" fullWidth
             value={fullname}
             onChange={(e) => setFullname(e.target.value)}
           />
           <br></br>
-          <TextField id="offender-alias" label="offender-alias" variant="standard" fullWidth
+          <TextField id="offender-alias" label="Alias" variant="standard" fullWidth
             value={alias}
             onChange={(e) => setAlias(e.target.value)}
           />
           <br></br>
-          <TextField id="offender-dob" label="offender-dob" variant="outlined" fullWidth
+          <TextField id="offender-dob" label="DOB" variant="outlined" fullWidth
             value={dob}
             onChange={(e) => setDob(e.target.value)}
           />
           <br></br>
-          <TextField id="offender-sex" label="offender-sex" variant="outlined" fullWidth
+          <TextField id="offender-sex" label="Sex" variant="outlined" fullWidth
             value={sex}
             onChange={(e) => setSex(e.target.value)}
           />
           <br></br>
-          <TextField id="offender-height" label="offender-height" variant="outlined" fullWidth
+          <TextField id="offender-height" label="Height(feet and inches)" inches variant="outlined" fullWidth
             value={height}
             onChange={(e) => setHeight(e.target.value)}
           />
           <br></br>
-          <TextField id="offender-weight" label="offender-weight" variant="outlined" fullWidth
+          <TextField id="offender-weight" label="Weight(lbs)" variant="outlined" fullWidth
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
           />
           <br></br>
-          <TextField id="offender-eyes" label="offender-eyes" variant="outlined" fullWidth
+          <TextField id="offender-eyes" label="Eye color" variant="outlined" fullWidth
             value={eyes}
             onChange={(e) => setEyes(e.target.value)}
           />
           <br></br>
-          <TextField id="offender-hair" label="offender-hair" variant="outlined" fullWidth
+          <TextField id="offender-hair" label="Hair color" variant="outlined" fullWidth
             value={hair}
             onChange={(e) => setHair(e.target.value)}
           />
+          <br></br>
 
           <Button variant="outlined" color="secondary" onClick={handleClick}>Submit</Button>
 
-          <Paper elevation={7} style={paperStyle}>
+          {/* <Paper elevation={7} style={paperStyle}>
             {offenders.map(offender => (
               <Paper elevation={6} style={{ margin: "10px", padding: "15px", textAlign: "left" }} key={offender.id}>
                 Id: {offender.id}<br />
@@ -116,17 +117,17 @@ function RegisterOffender() {
                 Eyes: {offender.eyes}<br />
                 Hair: {offender.hair}
 
-              </Paper>
+              </Paper> */}
 
 
-            )
+            {/* )
 
 
             )}
 
 
 
-          </Paper>
+          </Paper> */}
 
 
         </Box>
