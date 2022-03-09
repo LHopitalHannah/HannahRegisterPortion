@@ -15,11 +15,11 @@ function NavTabs(
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/perppage">Criminal Database</Nav.Link>
-                        <Nav.Link href="/fact">Dog Facts</Nav.Link>
+                        <Nav.Link href="/fact">Beautiful Doggies</Nav.Link>
                         {/* <Nav.Link href="/perppage">File a Complaint</Nav.Link> */}
 
                         <Nav.Link href="/registerOffender">Register Offender</Nav.Link>
-                        <Nav.Link href="#footer">About</Nav.Link>
+                        <Nav.Link href="/#footer">About</Nav.Link>
 
                     </Nav>
                     <Nav className="">
