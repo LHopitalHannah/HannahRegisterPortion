@@ -2,13 +2,17 @@ package com.revature.p2.models;
 
 import java.util.List;
 import java.util.Objects;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,10 +29,10 @@ public class Offender {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="offender_id", unique=true)
 	private int id;
-//	
-//
-//	private Deputy deputy;
-	
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "deputy_id")
+	private Deputy deputy;
 	
 	// image
 	@Column(name="src", unique=false, nullable=false)
