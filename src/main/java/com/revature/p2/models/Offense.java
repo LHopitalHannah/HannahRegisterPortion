@@ -40,8 +40,6 @@ public class Offense {
 	@JoinColumn(name = "offender_id")
 	public Offender offender;
 	
-	
-
 	public Offender getOffender() {
 		return offender;
 	}

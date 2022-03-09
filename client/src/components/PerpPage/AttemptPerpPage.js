@@ -9,8 +9,15 @@ function AttemptPerpPage() {
   const paperStyle = { padding: '50px 20px', width: 600, margin: "20px auto" }
 
   const [offenders, setOffenders] = useState([]);
+
+  const deleteOffender = (e) => {
+    const id = e.target.getAtrribute("id")
+    fetch(`http://localhost:8083/p2/offender/delete/id?id=${id}`, { method: 'DELETE' })
+  }
+
   const offenderTable = offenders.map((o) => (
       <tr key={o.id}>
+          <td><Button variant="dark" onClick={deleteOffender}>Delete</Button></td>
           <td>{o.src}</td>
           <td>{o.fullname}</td>
           <td>{o.alias}</td>
@@ -22,6 +29,9 @@ function AttemptPerpPage() {
           <td>{o.hair}</td>
       </tr>
   ));
+
+
+
 
   async function fetchOffenders() {
       const response = await fetch("http://localhost:8083/p2/offender/getAllOffender");
@@ -38,6 +48,7 @@ function AttemptPerpPage() {
     <table>
         <thead>
             <tr>
+                <th>Delete</th>
                 <th>Src</th>
                 <th>Fullname</th>
                 <th>Alias</th>
