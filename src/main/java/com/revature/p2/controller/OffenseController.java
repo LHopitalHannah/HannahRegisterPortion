@@ -41,7 +41,7 @@ public class OffenseController {
 //		return "New offense is added";
 		
 //		Offender offender = oneRepository(offense.getOffenderId()); //Get the parent Object
-		Offender offender = offenderService.getOffenderById(1);
+		Offender offender = offenderService.getOffenderById(offense.getOffender().getId());
 		Offense newOffense  = new Offense(); //Create a new Many object
 		newOffense.setOffenseDescription(offense.getOffenseDescription());
 		newOffense.setOffenseDate(offense.getOffenseDate());
