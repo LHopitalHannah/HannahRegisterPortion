@@ -57,6 +57,7 @@ public class Offender {
 	@Column(name="hair", unique=false, nullable=false)
 	private String hair;
 	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="order_by", unique=false, nullable=false)
 	private int orderBy;
 	

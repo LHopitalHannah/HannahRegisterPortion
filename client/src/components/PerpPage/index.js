@@ -270,11 +270,12 @@ function PerpPage() {
 
     const seedDB = () => {
         for (let i = 0; i < seedData.length; i++) {
-            console.log(seedData[i])
+            const offenderObj = {...seedData[i], orderBy:100 + i};
+            console.log(offenderObj)
             fetch("http://localhost:8083/p2/offender/add", {
                 method: "POST",
                 headers: { "Content-type": "application/json" },
-                body: JSON.stringify(seedData[i])
+                body: JSON.stringify(offenderObj)
             }).then(() => {
                 console.log("offender added")
             })
