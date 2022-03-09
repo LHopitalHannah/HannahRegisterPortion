@@ -3,27 +3,42 @@ import { Button, Modal, Table, Form, FloatingLabel, Image } from 'react-bootstra
 import axios from 'axios'
 
 function FileComplaint(props) {
+
+    const [data, setData] = useState(
+        props.data
+    );
     const [state, setState] = useState({})
     const [submitData, seSubmitData] = useState({
-        date: "",
-        offenseDescription: ""
+        offenseDate: "",
+        offenseDescription: "",
+        offender: { id: props.data.id }
     })
 
     const handleDateChange = event => {
-        setState({
-            date: event.target.value
+        console.log('data:', data)
+        seSubmitData({
+            ...submitData,
+            offenseDate: event.target.value,
+            offender: { id: data.id }
         });
     }
 
     const handleDescriptionChange = event => {
-        setState({
-            offenseDescription: event.target.value
+        seSubmitData({
+            ...submitData,
+            offenseDescription: event.target.value,
+            offender: { id: data.id }
         });
     }
 
     useEffect(() => {
-        console.log(state)
-    }, [state])
+        console.log(submitData)
+    }, [submitData])
+
+    useEffect(() => {
+        console.log(submitData)
+    }, [props.data])
+
     // const [data, setData] = useState(
     //     {
     //         "src": "images (a).png",
@@ -51,10 +66,7 @@ function FileComplaint(props) {
     //         ]
     //     }
     // );
-    
-    const [data, setData] = useState(
-        props.data
-    );
+
 
     const [lgShow, setLgShow] = useState(false);
 
@@ -75,16 +87,28 @@ function FileComplaint(props) {
         setState({ base64TextString: btoa(binaryString) })
     }
 
+    // useEffect(() => {
+
+    //     console.log('submitData: ', JSON.stringify(submitData))
+    // }, [submitData, data])
+
     const submitOffense = (e) => {
 
         e.preventDefault();
-        console.log(submitData)
-
-        axios.post(`/offense/add/${props.data.id}`, data, {
-            // receive two    parameter endpoint url ,form data
-        }).then(res => { // then print response status
-            console.log(res.statusText)
+        props.setData({
+            ...data, ...data.offenses.push(submitData)
         })
+
+        console.log('submitOffense:submitData: ', submitData)
+
+        axios.post('http://localhost:8083/p2/offense/add', submitData)
+            .then(res => {
+                console.log('axios.post');
+                console.log(res.data);
+                // props.setData([...data, submitData])
+            }).catch(e => {
+                console.log(e)
+            })
     }
 
     const handleSubmit = event => {
@@ -189,14 +213,14 @@ function FileComplaint(props) {
                             </td>
                         </tr>
                     </Table>
-                    <Form>
+                    <Form  >
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Date</Form.Label>
                             <Form.Control type="date" placeholder="Date"
                                 name="date"
                                 // ref={dateInput}
                                 // value={submitData.date} 
-                                onChange={handleDescriptionChange}
+                                onChange={handleDateChange}
                             />
                             <Form.Text className="text-muted">
                                 We'll never share your email with anyone else.
@@ -214,7 +238,7 @@ function FileComplaint(props) {
                             // ref={offenseDescriptionInput}
                             />
                         </FloatingLabel>
-                        <Button variant="primary" type="submit" >
+                        <Button variant="primary" type="submit" onClick={submitOffense}>
                             Submit
                         </Button>
                     </Form>

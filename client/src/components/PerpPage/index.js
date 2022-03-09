@@ -359,7 +359,7 @@ function PerpPage() {
                         <>
                             <Row key={`wpmr-${i}`}>
                                 <Col>
-                                    <LeftLayout key={`wpmll-${i}`} data={e} />
+                                    <LeftLayout key={`wpmll-${i}`} data={e}/>
 
                                     <WPModal key={`wpm1-${i}`} />
                                 </Col>
