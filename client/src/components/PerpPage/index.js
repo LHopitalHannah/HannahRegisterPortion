@@ -272,13 +272,16 @@ function PerpPage() {
         for (let i = 0; i < seedData.length; i++) {
             const offenderObj = { ...seedData[i], orderBy: 100 + i };
             console.log(offenderObj)
-            fetch("http://localhost:8083/p2/offender/add", {
-                method: "POST",
-                headers: { "Content-type": "application/json" },
-                body: JSON.stringify(offenderObj)
-            }).then(() => {
-                console.log("offender added")
-            })
+            setTimeout(() => {
+                fetch("http://localhost:8083/p2/offender/add", {
+                    method: "POST",
+                    headers: { "Content-type": "application/json" },
+                    body: JSON.stringify(offenderObj)
+                }).then(() => {
+                    console.log("offender added")
+                })
+            }
+                , i * 1000)
         }
     }
     useEffect(() => {
@@ -299,17 +302,24 @@ function PerpPage() {
         }))
     }, [searchString])
 
-    return isLoading ? <><Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-    </Spinner></> : (
+    return isLoading ? <>
+        <div className="center" style={{ height: '600px', textAlign: 'center', border: '3px' }}>
+            <br/>
+            <h1>Loading...</h1>
+            <br/>
+            <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </Spinner>
+        </div>
+    </> : (
 
         <>
             <section style={{ textAlign: 'center', backgroundColor: 'black' }}>
                 <ButtonGroup aria-label="Basic example">
                     <Button onClick={() => seedDB()}>Seed Database</Button>
                     {viewMode === 'profile' || viewMode === 'poster' ? (<><Button onClick={() => setViewMode('table')}>Table View</Button></>) : null}
-                    {/* <Button onClick={() => setViewMode('profile')}>Profile View</Button> */}
                     {viewMode === 'profile' ? (<><Button onClick={() => setViewMode('poster')}>Poster View</Button></>) : null}
+                    {viewMode === 'poster' ? (<><Button onClick={() => setViewMode('profile')}>Profile View</Button></>) : null}
                     {viewMode === 'profile' || viewMode === 'poster' ? (<><Button onClick={() => setActiveProfileRow(acitveProfileRow > 0 ? acitveProfileRow - 1 : 0)}>Previous</Button>
                         <Button onClick={() => setActiveProfileRow(acitveProfileRow < filteredData.length - 1 ? acitveProfileRow + 1 : filteredData.length - 1)}>Next</Button></>) : null}
 
@@ -359,7 +369,7 @@ function PerpPage() {
                         <>
                             <Row key={`wpmr-${i}`}>
                                 <Col>
-                                    <LeftLayout key={`wpmll-${i}`} data={e}/>
+                                    <LeftLayout key={`wpmll-${i}`} data={e} />
 
                                     <WPModal key={`wpm1-${i}`} />
                                 </Col>

@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Container, Row, Col, Table, Card, Button } from 'react-bootstrap'
 import Register from './components/Registration/Register';
 import RegisterOffender from './components/Registration/RegisterOffender';
+import Dog from'./components/DogAPI.js'
 
 function App() {
   return (
@@ -62,6 +63,13 @@ function App() {
           <Route exact path={["/", "/login"]}>
             <Login />
           </Route>
+
+          <Route exact path={["/", "/fact"]}>
+            <Dog />
+
+          </Route>
+
+          
         </Switch>
       </Router>
     </div >

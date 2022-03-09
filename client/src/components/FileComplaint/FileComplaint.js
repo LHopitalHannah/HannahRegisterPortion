@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Button, Modal, Table, Form, FloatingLabel, Image } from 'react-bootstrap'
+import { Button, Modal, Table, Form, FloatingLabel, Image, Container, Row, Col } from 'react-bootstrap'
 import axios from 'axios'
 
 function FileComplaint(props) {
@@ -152,67 +152,71 @@ function FileComplaint(props) {
 
 
                     </Form> */}
-                    <Image src={props.data.src} style={{ height: 300 }} wrapped ui={false} />
-                    <Table style={{ textAlign: 'left', width: '90%' }}>
-                        <tr>
-                            <td colSpan={4}>
-                                <h3>{data.fullname}</h3>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan={4}>
-                                <h6>Alias: {data.alias}<br />Affiliation(s): PWA (Puppies with Attitude)</h6>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan={2}>
-                                Dob {data.dob}
-                            </td>
-                            <td colSpan={2} >
-                                LIC. CLASS
-                                C
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Sex {data.sex}
-                            </td>
-                            <td colSpan={2} >
-                                Hair {data.hair}
-                            </td>
-                            <td>
-                                Eyes {data.eyes}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Ht {data.ht}
-                            </td>
-                            <td colSpan={2} >
-                                Wt {data.wt}
-                            </td>
-                            <td >
-                                Dl 123123
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan={2} >
-                                Issued 11/26/09
-                            </td>
-                            <td colSpan={2} >
-                                Expires 11/26/19
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan={4}>
-                                Misc. and State Specific Info.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
-                        </tr>
-                    </Table>
+                    <Container><Row><Col lg={4}>
+                        <Image src={props.data.src} style={{ height: 300 }} wrapped ui={false} />
+                    </Col>
+                        <Col lg={8}>
+                            <Table style={{ textAlign: 'left', width: '90%' }}>
+                                <tr>
+                                    <td colSpan={4}>
+                                        <h3>{data.fullname}</h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={4}>
+                                        <h6>Alias: {data.alias}<br />Affiliation(s): PWA (Puppies with Attitude)</h6>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={2}>
+                                        Dob {data.dob}
+                                    </td>
+                                    <td colSpan={2} >
+                                        LIC. CLASS
+                                        C
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Sex {data.sex}
+                                    </td>
+                                    <td colSpan={2} >
+                                        Hair {data.hair}
+                                    </td>
+                                    <td>
+                                        Eyes {data.eyes}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Ht {data.ht}
+                                    </td>
+                                    <td colSpan={2} >
+                                        Wt {data.wt}
+                                    </td>
+                                    <td >
+                                        Dl 123123
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={2} >
+                                        Issued 11/26/09
+                                    </td>
+                                    <td colSpan={2} >
+                                        Expires 11/26/19
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={4}>
+                                        Misc. and State Specific Info.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </Table>
+                        </Col></Row></Container>
                     <Form  >
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Date</Form.Label>
@@ -223,7 +227,7 @@ function FileComplaint(props) {
                                 onChange={handleDateChange}
                             />
                             <Form.Text className="text-muted">
-                                We'll never share your email with anyone else.
+                                Please provide a description of the incedent.
                             </Form.Text>
                         </Form.Group>
 
@@ -238,6 +242,7 @@ function FileComplaint(props) {
                             // ref={offenseDescriptionInput}
                             />
                         </FloatingLabel>
+                        <br />
                         <Button variant="primary" type="submit" onClick={submitOffense}>
                             Submit
                         </Button>

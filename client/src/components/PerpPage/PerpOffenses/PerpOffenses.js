@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 
 function PerpOffenses({ hProps, data }) {
     return (
@@ -15,6 +15,9 @@ function PerpOffenses({ hProps, data }) {
             <Table striped hover variant="dark" size="sm">
                 <thead>
                     <tr>
+                        {/* <th>
+                            controls
+                        </th> */}
                         {hProps.map((c, j) => (<th key={j}>{c}</th>))}
                     </tr>
                 </thead>
@@ -22,6 +25,7 @@ function PerpOffenses({ hProps, data }) {
 
                     {data && data.map((e, i) => {
                         return (<tr key={i}>
+                            {/* <td><Button varient="danger" size="sm">Del</Button></td> */}
                             {hProps.map((c, j) => (<td key={`${c}-${j}`}>{e[c]}</td>))}
                         </tr>)
                     })}
