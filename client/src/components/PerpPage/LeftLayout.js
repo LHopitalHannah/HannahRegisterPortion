@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Table, Image, ProgressBar, Button } from 'react-bootstrap'
+import PerpStatsEdit from './PerpStats/PerpStatsEdit';
 import PerpStats from './PerpStats/PerpStats';
 import PerpOffenses from './PerpOffenses/PerpOffenses';
 import FileComplaint from '../FileComplaint/FileComplaint'
@@ -10,6 +11,8 @@ function LeftLayout(props) {
         'offenseDate',
         'offenseDescription'
     ]);
+
+    const [editStats, setEditStats] = useState(false)
 
     useEffect(() => {
         console.log('LeftLayout')
@@ -59,7 +62,9 @@ Advise: Approach with Caution`);
                                 <Image src={"pawprints.png"} style={{ width: '100%' }} wrapped ui={false} />
                             </Col>
                             <Col>
-                                <PerpStats data={props.data} />
+                                <Button onClick={() => setEditStats(!editStats)}>Edit</Button>
+                                {editStats ? <PerpStatsEdit data={data} setData={setData} setEditStats={setEditStats} /> : <PerpStats data={data} />}
+
                                 <Table variant="dark" style={{ color: 'white' }}>
                                     <tr>
                                         <td>
