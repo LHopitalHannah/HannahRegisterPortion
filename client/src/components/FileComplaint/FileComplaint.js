@@ -105,6 +105,7 @@ function FileComplaint(props) {
             .then(res => {
                 console.log('axios.post');
                 console.log(res.data);
+                
                 // props.setData([...data, submitData])
             }).catch(e => {
                 console.log(e)

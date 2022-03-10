@@ -1,6 +1,7 @@
 // Include React
 import React, { Component } from 'react';
-import { Spinner } from 'react-bootstrap'
+import { Spinner, Button } from 'react-bootstrap'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 // import axios from 'axios';
 // import Nav from './children/Nav'
 
@@ -95,15 +96,17 @@ export default class Login extends Component {
             <form className="login" onSubmit={this.handleSubmit.bind(this)}>
               <input id="username-input" ref="user" type="text" name="user" placeholder="Username" onChange={this.handleUsernameChange} value={this.state.username} />
               <input id="password-input" ref="password" type="password" name="pass" placeholder="Password" onChange={this.handlePasswordChange} value={this.state.password} />
-              <input type="submit" name="login" className="login loginmodal-submit" value="Login" />
+
+              {/* <Link to='/perppage' ><input type="submit" name="login" className="login loginmodal-submit" value="Login" /></Link> */}
+              <Link to='/perppage' ><Button>Login</Button></Link>
             </form>
             <div className="login-help">
 
             </div>
           </div>
-        </div>) : <section style={{ height: '500px', postition:'relative', border: '3px', backgroundColor:'gray' }}>
+        </div>) : <section style={{ height: '500px', postition: 'relative', border: '3px', backgroundColor: 'gray' }}>
           {/* <Spinner style={{ postition: 'absolute', top:'50%' }} animation="border" role="status"> */}
-            <span style={{ postition: 'absolute', top:'50%', color:'red' }}  >Loading...</span>
+          <span style={{ postition: 'absolute', top: '50%', color: 'red' }}  >Loading...</span>
           {/* </Spinner> */}
         </section>
       }

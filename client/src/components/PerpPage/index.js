@@ -378,12 +378,12 @@ function PerpPage() {
                     {filteredData && filteredData.map((e, i) => i === acitveProfileRow ? (
                         <>
                             <Row key={`wpmr-${i}`}>
-                                <Col>
+                                <Col lg={7}>
                                     <LeftLayout key={`wpmll-${i}`} data={e} />
 
                                     <WPModal key={`wpm1-${i}`} />
                                 </Col>
-                                <Col>
+                                <Col lg={5}>
                                     <RightLayout key={`wpmrl-${i}`} />
                                 </Col>
                             </Row>
