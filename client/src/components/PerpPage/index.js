@@ -326,7 +326,7 @@ function PerpPage() {
         <>
             <section style={{ textAlign: 'center', backgroundColor: 'black' }}>
                 <ButtonGroup aria-label="Basic example">
-                    <Button onClick={() => seedDB()}>Seed Database</Button>
+                    {/* <Button onClick={() => seedDB()}>Seed Database</Button> */}
                     {viewMode === 'profile' || viewMode === 'poster' ? (<><Button onClick={() => setViewMode('table')}>Table View</Button></>) : null}
                     {viewMode === 'profile' ? (<><Button onClick={() => setViewMode('poster')}>Poster View</Button></>) : null}
                     {viewMode === 'poster' ? (<><Button onClick={() => setViewMode('profile')}>Profile View</Button></>) : null}
@@ -378,12 +378,12 @@ function PerpPage() {
                     {filteredData && filteredData.map((e, i) => i === acitveProfileRow ? (
                         <>
                             <Row key={`wpmr-${i}`}>
-                                <Col>
+                                <Col lg={7}>
                                     <LeftLayout key={`wpmll-${i}`} data={e} />
 
                                     <WPModal key={`wpm1-${i}`} />
                                 </Col>
-                                <Col>
+                                <Col lg={5}>
                                     <RightLayout key={`wpmrl-${i}`} />
                                 </Col>
                             </Row>
