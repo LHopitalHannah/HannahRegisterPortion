@@ -64,12 +64,12 @@ public class OffenseController {
 		return offenseService.getAllOffenses();
 	}
 	
-//	@PutMapping("/put")
-//	@ResponseStatus(HttpStatus.NO_CONTENT)
-//	public void updateOffenseInfo(@RequestBody Offense updateOffenseRequest, HttpServletRequest req) {
-//
-//		offenseService.updateOffense(updateOffenseRequest);
-//	}
+	@PutMapping("/put")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateOffenseInfo(@RequestBody Offense updateOffenseRequest, HttpServletRequest req) {
+
+		offenseService.updateOffense(updateOffenseRequest);
+	}
 	
 //	@PatchMapping("/update")
 //	@ResponseStatus(HttpStatus.OK)
