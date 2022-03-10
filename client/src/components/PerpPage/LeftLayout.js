@@ -61,7 +61,7 @@ Advise: Approach with Caution`);
                                 </Table>
                                 <Image src={"pawprints.png"} style={{ width: '100%' }} wrapped ui={false} />
                             </Col>
-                            <Col>
+                            <Col style={{textAlign:'left'}}>
                                 <Button onClick={() => setEditStats(!editStats)}>Edit</Button>
                                 {editStats ? <PerpStatsEdit data={data} setData={setData} setEditStats={setEditStats} /> : <PerpStats data={data} />}
 

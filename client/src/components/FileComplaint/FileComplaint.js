@@ -105,7 +105,7 @@ function FileComplaint(props) {
             .then(res => {
                 console.log('axios.post');
                 console.log(res.data);
-                
+
                 // props.setData([...data, submitData])
             }).catch(e => {
                 console.log(e)
@@ -219,6 +219,7 @@ function FileComplaint(props) {
                             </Table>
                         </Col></Row></Container>
                     <Form  >
+
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Date</Form.Label>
                             <Form.Control type="date" placeholder="Date"
@@ -228,10 +229,21 @@ function FileComplaint(props) {
                                 onChange={handleDateChange}
                             />
                             <Form.Text className="text-muted">
-                                Please provide a description of the incedent.
+                                Please provide a date of the incedent.
                             </Form.Text>
                         </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Offense Type</Form.Label>
 
+                            <Form.Select aria-label="Default select example" name="offenseType" >
+                                <option>Select</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </Form.Select>
+                            <Form.Text className="text-muted">
+                                Please provide the closes type of offense of the incedent.
+                            </Form.Text>
+                        </Form.Group>
                         <FloatingLabel controlId="floatingTextarea2" label="Comments">
                             <Form.Control
                                 as="textarea"
@@ -243,6 +255,10 @@ function FileComplaint(props) {
                             // ref={offenseDescriptionInput}
                             />
                         </FloatingLabel>
+                            <Form.Text className="text-muted">
+                                Please provide a description of the incedent.
+                            </Form.Text>
+                        <br />
                         <br />
                         <Button variant="primary" type="submit" onClick={submitOffense}>
                             Submit

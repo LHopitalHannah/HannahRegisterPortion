@@ -89,7 +89,13 @@ function PerpStatsEdit({ data, setData, setEditStats }) {
                     {/* Sex {data.sex} */}
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Sex</Form.Label>
-                        <Form.Control type="text" placeholder="Enter email" style={{ width: '50px' }} name="sex" value={submitData.sex} onChange={onChangeHandler} />
+                        {/* <Form.Control type="text" placeholder="Enter email" style={{ width: '50px' }} name="sex" value={submitData.sex} onChange={onChangeHandler} /> */}
+
+                        <Form.Select aria-label="Default select example"  style={{ width: '100px' }} name="sex" value={submitData.sex} onChange={onChangeHandler} >
+                            <option>Select</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </Form.Select>
                         {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text> */}
@@ -99,7 +105,7 @@ function PerpStatsEdit({ data, setData, setEditStats }) {
                     {/* Hair {data.hair}                     */}
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Hair</Form.Label>
-                        <Form.Control type="text" placeholder="Enter email" style={{ width: '50px' }} name="hair" value={submitData.hair} onChange={onChangeHandler} />
+                        <Form.Control type="text" placeholder="Enter email" style={{ width: '75px' }} name="hair" value={submitData.hair} onChange={onChangeHandler} />
                         {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text> */}
@@ -109,7 +115,7 @@ function PerpStatsEdit({ data, setData, setEditStats }) {
                     {/* Eyes {data.eyes}                     */}
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Eyes</Form.Label>
-                        <Form.Control type="text" placeholder="Enter email" style={{ width: '50px' }} name="eyes" value={submitData.eyes} onChange={onChangeHandler} />
+                        <Form.Control type="text" placeholder="Enter email" style={{ width: '75px' }} name="eyes" value={submitData.eyes} onChange={onChangeHandler} />
                         {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text> */}
@@ -121,7 +127,7 @@ function PerpStatsEdit({ data, setData, setEditStats }) {
                     {/* Ht {data.ht}                     */}
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Height</Form.Label>
-                        <Form.Control type="text" placeholder="Enter email" style={{ width: '50px' }} name="height" value={submitData.height} onChange={onChangeHandler} />
+                        <Form.Control type="text" placeholder="Enter email" style={{ width: '75px' }} name="height" value={submitData.height} onChange={onChangeHandler} />
                         {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text> */}
@@ -131,7 +137,7 @@ function PerpStatsEdit({ data, setData, setEditStats }) {
                     {/* Wt {data.wt} */}
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Weight</Form.Label>
-                        <Form.Control type="text" placeholder="Enter email" style={{ width: '50px' }} name="weight" value={submitData.weight} onChange={onChangeHandler} />
+                        <Form.Control type="text" placeholder="Enter email" style={{ width: '75px' }} name="weight" value={submitData.weight} onChange={onChangeHandler} />
                         {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text> */}

@@ -6,6 +6,7 @@ import RightLayout from './RightLayout';
 import './PerpPage.css'
 import WPModal from './WantedPoster/WPModal';
 import SearchBar from './SearchBar/SearchBar';
+import CardView from './CardView/CardView';
 
 function PerpPage() {
     const [isLoading, setIsLoading] = useState(true);
@@ -327,15 +328,19 @@ function PerpPage() {
             <section style={{ textAlign: 'center', backgroundColor: 'black' }}>
                 <ButtonGroup aria-label="Basic example">
                     <Button onClick={() => seedDB()}>Seed Database</Button>
-                    {viewMode === 'profile' || viewMode === 'poster' ? (<><Button onClick={() => setViewMode('table')}>Table View</Button></>) : null}
+                    {viewMode === 'profile' || viewMode === 'poster' || viewMode === 'card' ? (<><Button onClick={() => setViewMode('table')}>Table View</Button></>) : null}
+                    {viewMode === 'profile' || viewMode === 'poster' || viewMode === 'table' ? (<><Button onClick={() => setViewMode('card')}>Cards View</Button></>) : null}
                     {viewMode === 'profile' ? (<><Button onClick={() => setViewMode('poster')}>Poster View</Button></>) : null}
                     {viewMode === 'poster' ? (<><Button onClick={() => setViewMode('profile')}>Profile View</Button></>) : null}
                     {viewMode === 'profile' || viewMode === 'poster' ? (<><Button onClick={() => setActiveProfileRow(acitveProfileRow > 0 ? acitveProfileRow - 1 : 0)}>Previous</Button>
                         <Button onClick={() => setActiveProfileRow(acitveProfileRow < filteredData.length - 1 ? acitveProfileRow + 1 : filteredData.length - 1)}>Next</Button></>) : null}
 
-                    {viewMode === 'table' ? (<SearchBar setSearchString={setSearchString} />) : null}
+                    {viewMode === 'table' || viewMode === 'card' ? (<SearchBar setSearchString={setSearchString} />) : null}
                 </ButtonGroup>
             </section>
+            {viewMode === 'card' ?
+                (<CardView filteredData={filteredData} setViewMode={setViewMode} setActiveProfileRow={setActiveProfileRow}/>)
+                : null}
             {viewMode === 'table' ?
                 (<Table >
                     <thead>
