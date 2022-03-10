@@ -40,7 +40,7 @@ function PerpOffenses({ hProps, data }) {
                             <td>
                                 <ButtonGroup>
                                     <Button className={"btn-primary"} variant="flat">Edit</Button>
-                                    <Button className={"btn-primary"} variant="danger" onClick={() => deleteOffense(e.id)}>{JSON.stringify(e)}Delete</Button>
+                                    <Button className={"btn-primary"} variant="danger" onClick={() => deleteOffense(e.id)}>Delete</Button>
                                 </ButtonGroup>
                             </td>
                         </tr>)

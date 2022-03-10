@@ -326,7 +326,7 @@ function PerpPage() {
         <>
             <section style={{ textAlign: 'center', backgroundColor: 'black' }}>
                 <ButtonGroup aria-label="Basic example">
-                    {/* <Button onClick={() => seedDB()}>Seed Database</Button> */}
+                    <Button onClick={() => seedDB()}>Seed Database</Button>
                     {viewMode === 'profile' || viewMode === 'poster' ? (<><Button onClick={() => setViewMode('table')}>Table View</Button></>) : null}
                     {viewMode === 'profile' ? (<><Button onClick={() => setViewMode('poster')}>Poster View</Button></>) : null}
                     {viewMode === 'poster' ? (<><Button onClick={() => setViewMode('profile')}>Profile View</Button></>) : null}
