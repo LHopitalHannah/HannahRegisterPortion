@@ -8,16 +8,17 @@ function CardView({ filteredData, setViewMode, setActiveProfileRow }) {
             <Row>
                 {filteredData && filteredData.map((e, i) => (<>
                     <Col>
-                        <Card style={{ paddingTop: '15px', height: '100%' }}>
+                        <Card style={{ paddingTop: '15px', height: '100%', marginTop: '30px' }}>
                             {/* <MDBIcon style={{ textAlign: 'center' }} icon="camera-retro" size="5x" /> */}
                             <Image style={{ height: '300px' }} src={e.src} />
                             <Card.Body>
                                 <Card.Title>{e.fullname}</Card.Title>
-                                <Card.Text>
-                                    {['alias'].map((c, j) => {
-                                        return (<p key={`pm-${i}${j}`}>
-                                            {e[c]}
-                                        </p>)
+                                <Card.Text style={{textAlign:'left'}}>
+                                    {['alias', 'dob', 'height', 'weight'].map((c, j) => {
+                                        return (
+                                        <pre key={`pm-${i}${j}`}>
+                                            {[c]}: {e[c]}
+                                        </pre>)
                                     })}
                                 </Card.Text>
                             </Card.Body>
