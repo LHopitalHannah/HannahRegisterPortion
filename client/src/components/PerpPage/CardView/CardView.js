@@ -7,10 +7,10 @@ function CardView({ filteredData, setViewMode, setActiveProfileRow }) {
         <Container >
             <Row>
                 {filteredData && filteredData.map((e, i) => (<>
-                    <Col>
+                    <Col lg={3}>
                         <Card style={{ paddingTop: '15px', height: '100%', marginTop: '30px' }}>
                             {/* <MDBIcon style={{ textAlign: 'center' }} icon="camera-retro" size="5x" /> */}
-                            <Image style={{ height: '300px' }} src={e.src} />
+                            <Image style={{ height: 'auto', width:'100%' }} src={e.src} />
                             <Card.Body>
                                 <Card.Title>{e.fullname}</Card.Title>
                                 <Card.Text style={{textAlign:'left'}}>

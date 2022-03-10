@@ -1,5 +1,6 @@
 import React from 'react'
 import { Carousel, Card, Alert, Button, Container, Row, Col } from 'react-bootstrap'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 function Home() {
     return (<>
@@ -24,8 +25,8 @@ function Home() {
 
                 <Carousel.Caption>
                     <h3 style={{ textAlign: 'left', fontSize: '35px' }}>The PAW-Leashed Department (PLD)</h3>
-                    <p style={{ textAlign: 'left', width:600 }}>We will look for you. We will find you. We will embarrass you. - Liam Neeson</p>
-                    
+                    <p style={{ textAlign: 'left', width: 600 }}>We will look for you. We will find you. We will embarrass you. - Liam Neeson</p>
+
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
@@ -49,7 +50,9 @@ function Home() {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <Button className={"btn-primary"} variant="flat">Get Started!</Button>
+                                <Link to='/register' >
+                                    <Button className={"btn-primary"} variant="flat">Get Started!</Button>
+                                </Link>
                             </Card.Footer>
                         </Card>
                     </Col>
@@ -64,7 +67,9 @@ function Home() {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <Button className={"btn-primary"} variant="flat">Get Started!</Button>
+                                <Link to='/register' >
+                                    <Button className={"btn-primary"} variant="flat">Get Started!</Button>
+                                </Link>
                             </Card.Footer>
                         </Card>
                     </Col>
@@ -79,7 +84,9 @@ function Home() {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <Button className={"btn-primary"} variant="flat">Get Started!</Button>
+                                <Link to='/register' >
+                                    <Button className={"btn-primary"} variant="flat">Get Started!</Button>
+                                </Link>
                             </Card.Footer>
                         </Card>
                     </Col>
@@ -87,7 +94,7 @@ function Home() {
             </Container>
         </section>
         <div id="footer" ></div>
-        
+
     </>
     )
 }
