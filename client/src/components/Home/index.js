@@ -1,5 +1,6 @@
 import React from 'react'
 import { Carousel, Card, Alert, Button, Container, Row, Col } from 'react-bootstrap'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 function Home() {
     return (<>
@@ -24,8 +25,8 @@ function Home() {
 
                 <Carousel.Caption>
                     <h3 style={{ textAlign: 'left', fontSize: '35px' }}>The PAW-Leashed Department (PLD)</h3>
-                    <p style={{ textAlign: 'left', width:600 }}>We will look for you. We will find you. We will embarrass you. - Liam Neeson</p>
-                    
+                    <p style={{ textAlign: 'left', width: 600 }}>We will look for you. We will find you. We will embarrass you. - Liam Neeson</p>
+
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
@@ -45,11 +46,13 @@ function Home() {
                             <Card.Body>
                                 <Card.Title>We've got what you need!</Card.Title>
                                 <Card.Text>
-                                    Knowlegable in HTML, Javascript, CSS, Nodejs, Sequelize, and much much more!!!
+                                    Not all dogs go to heaven. Some dogs need to learn a leason or two. And Pawroled can help.
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <Button className={"btn-primary"} variant="flat">Get Started!</Button>
+                                <Link to='/register' >
+                                    <Button className={"btn-primary"} variant="flat">Get Started!</Button>
+                                </Link>
                             </Card.Footer>
                         </Card>
                     </Col>
@@ -60,12 +63,13 @@ function Home() {
                             <Card.Body>
                                 <Card.Title>At Your Service</Card.Title>
                                 <Card.Text>
-                                    Some quick example text to build on the card title and make up the bulk of
-                                    the card's content.
+                                    Pawroled has weeks of experirience is reasearch and treatment. And we know our pets are way more intuitive than they pretend to be. They are fully aware when they are the target or mockery and humiliation.
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <Button className={"btn-primary"} variant="flat">Get Started!</Button>
+                                <Link to='/register' >
+                                    <Button className={"btn-primary"} variant="flat">Get Started!</Button>
+                                </Link>
                             </Card.Footer>
                         </Card>
                     </Col>
@@ -76,11 +80,13 @@ function Home() {
                             <Card.Body>
                                 <Card.Title>Let's Get In Touch!</Card.Title>
                                 <Card.Text>
-                                    Ready to start your next project with me? Give me a call or send me an email and I will get back to you as soon as possible!
+                                    Ready to start fixing your broken dog? Help us help you. Register as a deputy, and start helping your dog.
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <Button className={"btn-primary"} variant="flat">Get Started!</Button>
+                                <Link to='/register' >
+                                    <Button className={"btn-primary"} variant="flat">Get Started!</Button>
+                                </Link>
                             </Card.Footer>
                         </Card>
                     </Col>
@@ -88,7 +94,7 @@ function Home() {
             </Container>
         </section>
         <div id="footer" ></div>
-        
+
     </>
     )
 }

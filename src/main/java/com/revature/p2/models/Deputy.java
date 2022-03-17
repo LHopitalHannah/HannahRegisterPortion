@@ -1,4 +1,5 @@
 package com.revature.p2.models;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -39,7 +41,8 @@ public class Deputy {
 //        inverseJoinColumns = { @JoinColumn(name = "offender_id") })
 //	
 //	
-	
+	@OneToMany(mappedBy="deputy", fetch=FetchType.EAGER)
+	private List<Offender> offenders;
 	
 	@Column(name="username", unique=true, nullable=false)
 	private String username;

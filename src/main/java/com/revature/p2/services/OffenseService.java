@@ -26,25 +26,19 @@ public class OffenseService {
 		return (List<Offense>)offenseDAO.findAll();
 	}
 	
-//	@Transactional
-//	public void updateOffense(Offense updateOffenseRequest) {
-//		
-//		Offense existingOffense = offenseDAO.findOffenseById(updateOffenseRequest.getId());
-//		//Check if the offense id exists
-//
-//		
-//		existingOffense.setSrc(updateOffenseRequest.getSrc());
-//		existingOffense.setWeight(updateOffenseRequest.getWeight());
-//		existingOffense.setAlias(updateOffenseRequest.getAlias());
-//		existingOffense.setDob(updateOffenseRequest.getDob());
-//		existingOffense.setHeight(updateOffenseRequest.getHeight());
-//		existingOffense.setEyes(updateOffenseRequest.getEyes());
-//		existingOffense.setHair(updateOffenseRequest.getHair());
-//		existingOffense.setFullname(updateOffenseRequest.getFullname());
-//		existingOffense.setSex(updateOffenseRequest.getSex());
-//		
-//		offenseDAO.save(existingOffense);	
-//	}
+	@Transactional
+	public void updateOffense(Offense updateOffenseRequest) {
+		
+		
+		Offense existingOffense = offenseDAO.findOffenseById(updateOffenseRequest.getId());
+		//Check if the offense id exists
+
+		existingOffense.setId(updateOffenseRequest.getId());
+		existingOffense.setOffenseDate(updateOffenseRequest.getOffenseDate());
+		existingOffense.setOffenseDescription(updateOffenseRequest.getOffenseDescription());
+
+		offenseDAO.save(existingOffense);	
+	}
 	
 	@Transactional
 	public void deleteOffenseById(int id) {

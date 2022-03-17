@@ -6,6 +6,7 @@ import RightLayout from './RightLayout';
 import './PerpPage.css'
 import WPModal from './WantedPoster/WPModal';
 import SearchBar from './SearchBar/SearchBar';
+import CardView from './CardView/CardView';
 
 function PerpPage() {
     const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +26,7 @@ function PerpPage() {
     const seedData = [{
         "src": "images (a).png",
         "fullname": "Guilty",
-        "alias": "Guilty",
+        "alias": "Guilty AF",
         "dob": "FEB 09, 2022",
         "sex": "M",
         "height": "2' 2\"",
@@ -289,6 +290,16 @@ function PerpPage() {
         fetchOffenders();
     }, []);
 
+    async function deleteOffender(id) {
+        const response = await fetch(`http://localhost:8083/p2/offender/delete/id?id=${id}`, {
+          method: "DELETE",
+        });
+        console.log(`Deleting ${id}`);
+        return response.json();
+    }
+
+
+
     useEffect(() => {
         setFilteredData(data.filter(e => {
             return (e.fullname.toLowerCase().includes(searchString) || e.alias.toLowerCase().includes(searchString))
@@ -317,20 +328,24 @@ function PerpPage() {
             <section style={{ textAlign: 'center', backgroundColor: 'black' }}>
                 <ButtonGroup aria-label="Basic example">
                     <Button onClick={() => seedDB()}>Seed Database</Button>
-                    {viewMode === 'profile' || viewMode === 'poster' ? (<><Button onClick={() => setViewMode('table')}>Table View</Button></>) : null}
+                    {viewMode === 'profile' || viewMode === 'poster' || viewMode === 'card' ? (<><Button onClick={() => setViewMode('table')}>Table View</Button></>) : null}
+                    {viewMode === 'profile' || viewMode === 'poster' || viewMode === 'table' ? (<><Button onClick={() => setViewMode('card')}>Cards View</Button></>) : null}
                     {viewMode === 'profile' ? (<><Button onClick={() => setViewMode('poster')}>Poster View</Button></>) : null}
                     {viewMode === 'poster' ? (<><Button onClick={() => setViewMode('profile')}>Profile View</Button></>) : null}
                     {viewMode === 'profile' || viewMode === 'poster' ? (<><Button onClick={() => setActiveProfileRow(acitveProfileRow > 0 ? acitveProfileRow - 1 : 0)}>Previous</Button>
                         <Button onClick={() => setActiveProfileRow(acitveProfileRow < filteredData.length - 1 ? acitveProfileRow + 1 : filteredData.length - 1)}>Next</Button></>) : null}
 
-                    {viewMode === 'table' ? (<SearchBar setSearchString={setSearchString} />) : null}
+                    {viewMode === 'table' || viewMode === 'card' ? (<SearchBar setSearchString={setSearchString} />) : null}
                 </ButtonGroup>
             </section>
+            {viewMode === 'card' ?
+                (<CardView filteredData={filteredData} setViewMode={setViewMode} setActiveProfileRow={setActiveProfileRow}/>)
+                : null}
             {viewMode === 'table' ?
                 (<Table >
                     <thead>
                         <tr>
-                            {['src', 'fullname', 'alias', 'dob', 'sex', 'hair', 'eyes'].map((c, j) => {
+                            {['src', 'fullname', 'alias', 'dob', 'sex', 'hair', 'eyes', 'Delete'].map((c, j) => {
                                 return (<th key={`th-${j}`}>
                                     {c}
                                 </th>)
@@ -353,7 +368,7 @@ function PerpPage() {
                                         {e[c]}
                                     </td>)
                                 })}
-
+                                <td><Button variant="dark" onClick={() => deleteOffender(e.id)}>Delete</Button></td>
                             </tr>
                         </>
                         )
@@ -368,12 +383,12 @@ function PerpPage() {
                     {filteredData && filteredData.map((e, i) => i === acitveProfileRow ? (
                         <>
                             <Row key={`wpmr-${i}`}>
-                                <Col>
+                                <Col lg={7}>
                                     <LeftLayout key={`wpmll-${i}`} data={e} />
 
                                     <WPModal key={`wpm1-${i}`} />
                                 </Col>
-                                <Col>
+                                <Col lg={5}>
                                     <RightLayout key={`wpmrl-${i}`} />
                                 </Col>
                             </Row>

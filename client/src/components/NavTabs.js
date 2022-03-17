@@ -26,11 +26,11 @@ function NavTabs(
                         <Nav.Link href="/login">Login</Nav.Link>
                         <Nav.Link href="/register">Register</Nav.Link>
                     </Nav>
-                    <Button onClick={() => {
+                    {/* <Button onClick={() => {
                         axios.get('https://randomuser.me/api/').then(e => {
                             console.log(e.data)
                         })
-                    }}>Click</Button>
+                    }}>Click</Button> */}
                 </Container>
             </Navbar>
         </>
